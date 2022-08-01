@@ -3,7 +3,7 @@ const Pokedex = require("pokeapi-js-wrapper")
 
 
 const Pokemons = (props) => {
-    const {selectedPokemon} = props;
+    const {selectedPokemon, pokemonBack} = props;
   //const [selectedPokemons, setSelectedPokemons] = useState([]);
     const [pokeImg, setPokeImg] = useState([]);
     const [pokeAbilities, setPokeAbilities] = useState([]);
@@ -28,6 +28,8 @@ const Pokemons = (props) => {
     if (!errorMessage ) {
         return (
             <div>
+                <button onClick={pokemonBack}>back </button>
+                <br />
                 <img src={pokeImg} />
                 <h1>{selectedPokemon}</h1>
                 <h2>Abilities:</h2>

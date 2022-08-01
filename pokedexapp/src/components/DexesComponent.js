@@ -3,7 +3,7 @@ const Pokedex = require("pokeapi-js-wrapper")
 
 
 const DexesComponent = (props) => {
-    let {setSelectedPokemon, selectedPokedex} = (props) 
+    let {setSelectedPokemon, selectedPokedex, pokedexBack} = (props) 
     const [selectedRegion, setSelectedRegion] = useState([]);
     const [errorMessage, seterrorMessage] = useState(false);
 
@@ -19,10 +19,13 @@ console.log(selectedRegion)
 
     if (!errorMessage ) {
         return (
-            <ul >
+            <div>
+            <button onClick={pokedexBack}>back </button>
+            <ul >   
                 {selectedRegion.map((pokemon) => <li key={pokemon.pokemon_species.name}><p>{pokemon.pokemon_species.name}</p> 
                     <button onClick={() => setSelectedPokemon(pokemon.pokemon_species.name)}> view </button> </li>)}
             </ul >
+            </div>
         )
     } else {
         return(

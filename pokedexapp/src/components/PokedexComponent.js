@@ -21,6 +21,7 @@ const PokedexComponent = (props) => {
     if (!errorMessage ) {
         return (
             <ul >
+                
                 {allDexes.map((dexName) => <li key={dexName.name}><p>{dexName.name}</p> <button onClick={(
                     ) => setSelectedPokedex(dexName.name)}> view </button> </li>)}
             </ul >

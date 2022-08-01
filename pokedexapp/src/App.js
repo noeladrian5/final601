@@ -5,29 +5,43 @@ import DexesComponent from './components/DexesComponent';
 import PokedexComponent from './components/PokedexComponent';
 import Pokemons from './components/Pokemons';
 
-function App() { 
-const [selectedPokedex, setSelectedPokedex] = useState("");
-const [selectedPokemon, setSelectedPokemon] = useState("");
+function App() {
+  const [selectedPokedex, setSelectedPokedex] = useState("");
+  const [selectedPokemon, setSelectedPokemon] = useState("");
 
-function goHome() {
-  setSelectedPokedex("");
-  setSelectedPokemon("");
-}
-console.log("debug", selectedPokemon)
+  function pokedexBack(){
+    setSelectedPokedex("");
+  }
+  function pokemonBack() {
+    setSelectedPokemon("");
+  }
 
-  if (selectedPokedex== "") {
-    return(
-      <PokedexComponent setSelectedPokedex={setSelectedPokedex} />
-      )
+  function goHome() {
+    setSelectedPokedex("");
+    setSelectedPokemon("");
+  }
+
+  console.log("debug", selectedPokemon)
+
+  if (selectedPokedex == "") {
+    return (
+      <div>
+        <PokedexComponent setSelectedPokedex={setSelectedPokedex} />
+      </div>)
   } else if (selectedPokedex !== "" && selectedPokemon === "") {
-    return(
-      <DexesComponent setSelectedPokemon={setSelectedPokemon} selectedPokedex={selectedPokedex} />  
-    )
+    return (
+      <div>
+        <button onClick={goHome}> home </button>
+        <DexesComponent setSelectedPokemon={setSelectedPokemon} selectedPokedex={selectedPokedex}
+        pokedexBack={pokedexBack} />
+      </div>)
   } else if (selectedPokedex !== "" && selectedPokemon !== "") {
     return (
-      <Pokemons selectedPokemon={selectedPokemon} />
-    )
-  } 
+      <div>
+        <button onClick={goHome}> home </button>
+        <Pokemons selectedPokemon={selectedPokemon} pokemonBack={pokemonBack} />
+      </div>)
+  }
 
 }
 
