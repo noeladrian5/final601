@@ -1,25 +1,48 @@
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
 import './App.css';
+import DexesComponent from './components/DexesComponent';
+
+import PokedexComponent from './components/PokedexComponent';
+import Pokemons from './components/Pokemons';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const [selectedPokedex, setSelectedPokedex] = useState("");
+  const [selectedPokemon, setSelectedPokemon] = useState("");
+
+  function pokedexBack(){
+    setSelectedPokedex("");
+  }
+  function pokemonBack() {
+    setSelectedPokemon("");
+  }
+
+  function goHome() {
+    setSelectedPokedex("");
+    setSelectedPokemon("");
+  }
+
+  console.log("debug", selectedPokemon)
+
+  if (selectedPokedex == "") {
+    return (
+      <div>
+        <PokedexComponent setSelectedPokedex={setSelectedPokedex} />
+      </div>)
+  } else if (selectedPokedex !== "" && selectedPokemon === "") {
+    return (
+      <div>
+        <button onClick={goHome}> home </button>
+        <DexesComponent setSelectedPokemon={setSelectedPokemon} selectedPokedex={selectedPokedex}
+        pokedexBack={pokedexBack} />
+      </div>)
+  } else if (selectedPokedex !== "" && selectedPokemon !== "") {
+    return (
+      <div>
+        <button onClick={goHome}> home </button>
+        <Pokemons selectedPokemon={selectedPokemon} pokemonBack={pokemonBack} />
+      </div>)
+  }
+
 }
 
 export default App;
