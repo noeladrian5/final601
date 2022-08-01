@@ -1,25 +1,34 @@
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
 import './App.css';
+import DexesComponent from './components/DexesComponent';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import PokedexComponent from './components/PokedexComponent';
+import Pokemons from './components/Pokemons';
+
+function App() { 
+const [selectedPokedex, setSelectedPokedex] = useState("");
+const [selectedPokemon, setSelectedPokemon] = useState("");
+
+function goHome() {
+  setSelectedPokedex("");
+  setSelectedPokemon("");
+}
+console.log("debug", selectedPokemon)
+
+  if (selectedPokedex== "") {
+    return(
+      <PokedexComponent setSelectedPokedex={setSelectedPokedex} />
+      )
+  } else if (selectedPokedex !== "" && selectedPokemon === "") {
+    return(
+      <DexesComponent setSelectedPokemon={setSelectedPokemon} selectedPokedex={selectedPokedex} />  
+    )
+  } else if (selectedPokedex !== "" && selectedPokemon !== "") {
+    return (
+      <Pokemons selectedPokemon={selectedPokemon} />
+    )
+  } 
+
 }
 
 export default App;
